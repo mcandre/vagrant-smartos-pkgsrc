@@ -5,9 +5,6 @@ BOX=vagrant-smartos-pkgsrc.box
 launch-vm: Vagrantfile bootstrap.sh
 	vagrant up
 
-test: launch-vm
-	vagrant ssh -c "pfexec pkgin -y update && pfexec pkgin -y install jq && jq --version"
-
 clean-vm:
 	-vagrant destroy -f
 
@@ -17,7 +14,13 @@ clean-boxes:
 clean-vagrant-metadata:
 	-rm -rf .vagrant
 
-clean: clean-boxes clean-vm clean-vagrant-metadata
+clean-box-workspace:
+	-rm -rf box-discless
 
-$(BOX): export.Vagrantfile clean launch-vm
+clean: clean-boxes clean-vm clean-vagrant-metadata clean-iso clean-box-workspace
+
+$(BOX): clean-boxes clean-vm launch-vm export.Vagrantfile
 	vagrant package --output $(BOX) --vagrantfile export.Vagrantfile
+
+install-box-virtualbox: $(BOX)
+	vagrant box add --force --name mcandre/vagrant-smartos-pkgsrc $(BOX)

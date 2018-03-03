@@ -12,5 +12,7 @@ curl -kO https://pkgsrc.joyent.com/packages/SmartOS/bootstrap/${BOOTSTRAP_TAR}
 
 tar -zxpf ${BOOTSTRAP_TAR} -C /
 
-# Add pkgsrc to standard environment...
-print "export PATH=\"\$PATH:/opt/tools/sbin:/opt/tools/bin\"\nexport MANPATH=\$MANPATH:/opt/tools/man\n" >>/etc/profile
+# Register pkgsrc with bash (login) shell
+# svcadm disable -s manray-persist &&
+    print "export PATH=\"\$PATH:/opt/tools/sbin:/opt/tools/bin\"\nexport MANPATH=\$MANPATH:/opt/tools/man\n" >>/opt/home/vagrant/.profile
+    # svcadm enable -s manray-persist

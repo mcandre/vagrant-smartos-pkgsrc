@@ -1,5 +1,9 @@
 # vagrant-smartos-pkgsrc: a Vagrant box with SmartOS + pkgsrc
 
+# DISCLAIMER
+
+Currently broken due to Vagrant dropping installation media discs on export.
+
 # VAGRANT CLOUD
 
 https://app.vagrantup.com/mcandre/boxes/vagrant-smartos-pkgsrc
@@ -7,9 +11,8 @@ https://app.vagrantup.com/mcandre/boxes/vagrant-smartos-pkgsrc
 # EXAMPLE
 
 ```console
+$ cd test
 $ vagrant up
-$ vagrant ssh -c "pfexec pkgin -y update && pfexec pkgin -y install jq && jq --version"
-jq-1.5-1-g940132e-dirty
 ```
 
 # RUNTIME REQUIREMENTS
