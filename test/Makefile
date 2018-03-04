@@ -7,8 +7,7 @@ test: test-boot test-install
 test-boot:
 	vagrant up
 
-test-install:
-	vagrant up
+test-install: test-boot
 	vagrant ssh -c "jq --version"
 
 clean-vm:
