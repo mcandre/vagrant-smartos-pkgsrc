@@ -1,12 +1,6 @@
 BOX=vagrant-smartos-pkgsrc.box
 
-.PHONY: launch-vm clean-vm clean-boxes clean-vagrant-metadata
-
-launch-vm: Vagrantfile bootstrap.sh
-	vagrant up
-
-clean-vm:
-	-vagrant destroy -f
+.PHONY: clean-boxes clean-vagrant-metadata
 
 clean-boxes:
 	-rm -rf *.box
@@ -14,12 +8,9 @@ clean-boxes:
 clean-vagrant-metadata:
 	-rm -rf .vagrant
 
-clean-box-workspace:
-	-rm -rf box-discless
+clean: clean-boxes clean-vagrant-metadata
 
-clean: clean-boxes clean-vm clean-vagrant-metadata
-
-$(BOX): clean-boxes clean-vm launch-vm export.Vagrantfile
+$(BOX): clean-boxes export.Vagrantfile
 	vagrant package --output $(BOX) --vagrantfile export.Vagrantfile
 
 install-box-virtualbox: $(BOX)
