@@ -17,7 +17,7 @@ clean-vagrant-metadata:
 clean-box-workspace:
 	-rm -rf box-discless
 
-clean: clean-boxes clean-vm clean-vagrant-metadata clean-iso clean-box-workspace
+clean: clean-boxes clean-vm clean-vagrant-metadata
 
 $(BOX): clean-boxes clean-vm launch-vm export.Vagrantfile
 	vagrant package --output $(BOX) --vagrantfile export.Vagrantfile
