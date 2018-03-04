@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "mcandre/smartos"
-  # config.vm.box_version = "0.0.1"
+  config.vm.box_version = "0.0.2"
 
   # Prepare for vagrant package
   config.ssh.insert_key = false
